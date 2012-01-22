@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block scripts %}
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+		<link  href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-darkness/jquery-ui.css" rel=stylesheet type="text/css">
+
+	    <link  href="{{MEDIA_URL}}js/djgrid/jqGrid-4.3.1/css/ui.jqgrid.css" rel="stylesheet" type="text/css"/>
+	    <script src="{{MEDIA_URL}}js/djgrid/jqGrid-4.3.1/js/i18n/grid.locale-en.js" type="text/javascript"></script>
+	    <script src="{{MEDIA_URL}}js/djgrid/jqGrid-4.3.1/js/jquery.jqGrid.min.js" type="text/javascript"></script>
+	    <script src="{{MEDIA_URL}}js/djgrid/jqGrid-4.3.1/src/grid.inlinedit.js" type="text/javascript"></script>
+	    	    
+		<script src="{{MEDIA_URL}}js/djgrid/ui-multiselect/src/jquery.multiselect.min.js" type="text/javascript" ></script>
+		<script src="{{MEDIA_URL}}js/djgrid/ui-multiselect/src/jquery.multiselect.filter.min.js" type="text/javascript" ></script>
+		<link  href="{{MEDIA_URL}}js/djgrid/ui-multiselect/jquery.multiselect.css" rel="stylesheet" type="text/css" />
+		<link  href="{{MEDIA_URL}}js/djgrid/ui-multiselect/jquery.multiselect.filter.css" rel="stylesheet" type="text/css" />
+		
+	    <script src="{{MEDIA_URL}}js/djgrid/ui-datetimepicker/ui-timepicker-addon.js" type="text/javascript"></script>
+
+		<script src="{{MEDIA_URL}}js/djgrid/chosen/chosen.jquery.min.js" type="text/javascript"></script>
+	    <link  href="{{MEDIA_URL}}js/djgrid/chosen/chosen.css" rel="stylesheet" type="text/css" />
+
+        <script src="{{MEDIA_URL}}js/djgrid/tinymce-3.4.7/jscripts/tiny_mce/tiny_mce.js" type="text/javascript"></script>
+
+        {% block extra_js %}{% endblock %}
+        
+{% endblock %}
+
+{% block content %}
+
+	<div id="djgrid-content">
+		{% if navigation %}
+		<div id="tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all" style="padding:0;margin-left:15px;border:none;background:none;">
+			<ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" style="border:none;background:none;">
+	             {% for app,model,verbose in register %}
+	                  {% url djgrid-listview prefix app model as the_url %}
+				      <li class="{% ifequal model model_name %}ui-state-active  ui-tabs-selected {% endifequal %} ui-state-default ui-corner-top">
+				      	  <a href="{{the_url}}" style="padding:7px;font-weight: normal;cursor:pointer;">{{verbose}}</a>
+				      </li>
+			     {% endfor %}
+			</ul>
+		</div>
+		{% endif %}
+		<div id="content" style="width:99%;">
+		    <div>
+		        {% block grid %}{% endblock %}
+		    </div>
+		</div>
+	</div>
+	
+{% endblock %}

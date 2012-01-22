@@ -1,0 +1,5 @@
+{% if not is_ajax %}
+    {% include 'djgrid/aed_nonajax.html' %}
+{% else %}
+    {% include 'djgrid/aed_ajax.html' %}
+{% endif %}

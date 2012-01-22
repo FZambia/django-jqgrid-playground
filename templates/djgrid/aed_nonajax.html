@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+	    <form enctype="multipart/form-data" method="POST" action="{% if url %}{{url}}{% else %}/{{model}}/{% if not id %}add/{% else %}{{id}}/edit/{% endif %}{% endif %}">
+			{% if form.non_field_errors %}
+			    <span class="error" style="color:red;">{{form.non_field_errors}}</span>
+			{% endif %}
+			
+			{% csrf_token %}
+			
+			<table>
+			<tbody>
+				{% for field in form %}
+				   {% if not field.is_hidden %}
+				   <tr>
+				        <th>{{ field.label_tag }}:</th>
+				        <td class="activity_input">{{ field }}</td> 
+				        <td valign="top"><span class="error" style="color:red;" id="{{field.name}}">{{field.errors}}</span></td>
+				   </tr>
+				   {% endif %}
+				{% endfor %}
+				{% for field in form %}
+				   {% if field.is_hidden %}
+				   	  {{ field }}
+				   {% endif %}
+				{% endfor %}
+			</tbody>
+			</table>
+			<br />
+			<input type="submit" value="Save"> 
+			{% if url_delete %}
+			    <div style="float:right;">
+					  <a href="{{url_delete}}">Delete</a>
+			    </div>
+			{% endif %}
+		</form>
+{% endblock %}

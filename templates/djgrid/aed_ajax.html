@@ -1,0 +1,80 @@
+<script type="text/javascript">
+    
+	$(document).ready(function(){
+
+	    $('#form-ajax').find('textarea').css('width','100%').css('height','{{WYSIWYG_HEIGHT}}'||'500px');
+	    $('#form-ajax').find('input[type="text"]').css('width','50%');
+	    $('#form-ajax').find('select').css('width','25%').end().find('.ModelMultipleChoiceField').css('width','90%');
+	    
+	    $('a.ui-button,button.ui-button').hover(function(){
+	    	$(this).addClass('ui-state-hover');
+	    },function(){
+	    	$(this).removeClass('ui-state-hover');
+	    })
+	    
+	    $('a.djgrid-delete').hover(function(){
+	    	$(this).addClass('nontransparent');
+	    },function(){
+	    	$(this).removeClass('nontransparent');
+	    })
+	    
+	    $('a.djgrid-delete').click(function(){
+	    	create_confirm($(this));
+	    	return false;
+	    })
+	})
+</script>
+<style type="text/css">
+    .padding10{
+    	padding:10px !important;
+    }
+    .djgrid-delete {
+    	font-weight:bold;
+    	opacity:0.7 !important;
+    }
+    .djgrid-delete:hover{
+    	font-weight:bold !important;
+    }
+    .nontransparent {
+    	opacity:1 !important;
+    }
+</style>
+<div id="form-ajax">
+
+    <form enctype="multipart/form-data" onsubmit="return submit_form(this)" method="POST" action="{% if url %}{{url}}{% else %}{% if id %}/{{model}}/{{id}}/edit/{% else %}/{{model}}/add/{% endif %}{% endif %}">
+		{% if SAVE_ON_TOP %}
+		    <div style="float:right;">
+			    <button type="submit" class="ui-widget ui-button ui-state-default ui-corner-all padding10">Save</button>
+		    </div>
+		{% endif %}
+		
+		{% csrf_token %}
+		
+		{{form.media}}
+		
+		<div class="error" style="color:red;font-size:1.2em;" id="__all__"></div>
+		<div>
+		    {% for field in form %}
+		       {% if not field.is_hidden %}
+		       <div style="margin-bottom:10px;">
+		            <div style="">{{ field.label_tag }}:</div>
+		            <div style="">{{ field }}</div>
+		            <div><span class="aed_error" style="color:red;" id="error_{{field.name}}">{{field.errors}}</span></div>
+		       </div>
+		       {% endif %}
+		    {% endfor %}
+		    {% for field in form %}
+		       {% if field.is_hidden %}
+		       	  {{ field }}
+		       {% endif %}
+		    {% endfor %}
+		</div>
+		{% if url_delete %}
+		    <div style="float:right;">
+			    <a href="{{url_delete}}" class="ui-widget ui-button ui-state-error ui-corner-all padding10 djgrid-delete">Delete</a>
+		    </div>
+		{% endif %}
+		<button type="submit" class="ui-widget ui-button ui-state-default ui-corner-all padding10">Save</button>
+    </form>
+
+</div>
