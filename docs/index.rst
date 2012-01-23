@@ -53,7 +53,7 @@ Some installation steps:
 
 5. The last step. In your `urls.py` you need to write some classes that is a grid admin instances ::
 
-	from djgrid.grids import GridResource
+	from djgrid.resources import GridResource
 	class Resource(GridResource):
 	    class Meta:
 	        register = [['auth','user']]
