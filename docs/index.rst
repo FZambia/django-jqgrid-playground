@@ -6,8 +6,6 @@
 Welcome to Django jQuery Grid Admin's documentation!
 ====================================================
 
-Contents:
-
 .. toctree::
    :maxdepth: 2
    
