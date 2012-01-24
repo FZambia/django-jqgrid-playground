@@ -22,7 +22,7 @@ Just take a look at some screenshots:
 * http://postimage.org/image/a1tqmrwd1/
 * http://postimage.org/image/4hh9c4xhx/
 
-Try a demonstration
+Try a demonstration:
 --------------------
 * http://google.com
 
@@ -34,8 +34,8 @@ Let's Get It Started
 ====================
 Current version of this app is not available on PyPi.
 
-Installation steps
-------------------
+Some installation steps:
+------------------------
 
 1. First, you need to clone this repository on Github: https://github.com/FZambia/Django-jQuery-Grid-Admin
 

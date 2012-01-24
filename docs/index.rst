@@ -14,7 +14,7 @@ Contents
 
    overview
    options
-   javascript
+   plugin
    ...
 
 Indices and tables
