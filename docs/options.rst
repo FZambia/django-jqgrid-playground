@@ -43,7 +43,50 @@ Custom options
 
 * **navigation** - show navigation tabs (DEFAULT `True`)
 
+Description directives
+----------------------
+* **fields** - list of fields for model to display on grid (if omitted then we use all model fields)
+
+* **exclude** -  list of excluded fields for model (if omitted then we do not exclude any field)
+
+* **plugins** - list of fields for which you want to use widget/plugin or magic word 'ALL' (if omitted then we do not use any plugin)
+
+* **safe** - list of fields for which you do not want to escape html (if omitted then we escape all column values)
 
 Example with all options overrided
 -----------------------------------
-not available yet
+In this code snippet we override all available options to customize behaviour of grid admin: ::
+
+    from djgrid.resources import GridResource
+    
+    class Resource(GridResource):
+        class Meta:
+            register = [['blog','post'],['blog','comment'],['auth','user']]
+            description = {
+                'post':{
+                    'fields':['title','teaser','author','published_at','updated_at'],
+                    'plugins':'ALL',
+                    'safe':['author']
+                },
+                'comment':{
+                
+                },
+                'user': {
+                    'exclude': ['password'],
+                    'plugins': ['permissions','groups']
+                }
+            }
+            prefix = 'custom_admin'
+            readonly = False
+            inline = True
+            datetime_format = "%d/%m/%Y %H-%M"
+            date_format = "%d/%m/%Y"
+            time_format = "%H-%M"
+            grid_rownum = 30
+            datepicker_format = "dd/mm/yy"
+            timepicker_format = "hh-mm"
+            dialog_width = '60%'
+            dialog_max_height = 400
+            wysiwyg_height = 200
+            save_on_top = True
+            navigation = False
