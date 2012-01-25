@@ -90,3 +90,11 @@ In this code snippet we override all available options to customize behaviour of
             wysiwyg_height = 200
             save_on_top = True
             navigation = False
+
+Next you need to create instance of Resource and add resource's urls in urlpatterns: ::
+
+    resource = Resource()
+    urlpatterns = patterns('',
+        url(r'^$', include(resource.urls)),
+    )
+
