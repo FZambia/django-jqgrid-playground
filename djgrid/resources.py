@@ -54,7 +54,7 @@ class GridResourceOptions(object):
                 if not override_name.startswith('_'):
                     overrides[override_name] = getattr(meta, override_name)
 
-        return object.__new__(type('GridOptions', (cls,), overrides))
+        return object.__new__(type('GridResourceOptions', (cls,), overrides))
 
 class DeclarativeMeta(type):
     def __new__(cls, name, bases, attrs):
