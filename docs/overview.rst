@@ -24,11 +24,11 @@ Just take a look at some screenshots:
 
 Try a demonstration
 --------------------
-* http://google.com
+* http://wellspring.ru/jsadmin/
 
 Watch this video
 -----------------
-* http://youtube.com
+* 
 
 Let's Get It Started
 ====================
