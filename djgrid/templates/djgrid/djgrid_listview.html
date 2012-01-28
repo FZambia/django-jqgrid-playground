@@ -215,7 +215,7 @@ jQuery(function(){
     var lastSel;
 	$.ajax({
        type: "POST",
-       url: '{{grid_url}}',
+       url: '{{list_url}}',
        data:{'csrfmiddlewaretoken':'{{csrf_token}}','initial':true },
        dataType: "json",
        success: function(result)
