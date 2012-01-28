@@ -1,3 +1,7 @@
+All django users know that this framework goes with perfect administration page included. It has some useful javascript widgets and pretty interface. But what if we try to speed up its performance using ajax technology and improve usability adding some popular javascript plugins/widgets such as TinyMCE, Chosen, Datepickers and Multiselects. It could be nice, couldn’t it?
+
+So, Django jQuery Grid Admin app is all about it. Built on the top of jQuery UI, it uses jQuery Grid plugin to display model’s data and jQuery UI Dialog widget to edit model’s instances.
+
 DEMONSTRATION:
 http://wellspring.ru/jsadmin/
 
